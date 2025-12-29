@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-29T13:53:49.877550+00:00",
+  "generated_at": "2025-12-29T13:58:36.102884+00:00",
   "models": {
     "bytedance-seed/seed-1.6-flash": {
       "provider": "bytedance-seed",
@@ -49622,7 +49622,7 @@
       },
       "context_window": 4096,
       "max_output_tokens": 4096,
-      "model_type": "chat",
+      "model_type": "image",
       "supports_vision": false,
       "supports_function_calling": false,
       "supports_streaming": true,
@@ -49647,7 +49647,7 @@
       },
       "context_window": 4096,
       "max_output_tokens": 4096,
-      "model_type": "chat",
+      "model_type": "image",
       "supports_vision": false,
       "supports_function_calling": false,
       "supports_streaming": true,
@@ -49697,7 +49697,7 @@
       },
       "context_window": 4096,
       "max_output_tokens": 4096,
-      "model_type": "chat",
+      "model_type": "image",
       "supports_vision": false,
       "supports_function_calling": false,
       "supports_streaming": true,
@@ -53743,7 +53743,7 @@
       "openrouter",
       "litellm"
     ],
-    "last_scrape": "2025-12-29T13:53:49.877550+00:00",
+    "last_scrape": "2025-12-29T13:58:36.102884+00:00",
     "categories": {
       "budget": 945,
       "standard": 711,

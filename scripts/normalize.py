@@ -260,9 +260,19 @@ def normalize_openrouter(raw_data: dict[str, Any], fetched_at: str) -> dict[str,
             modality = architecture.get("modality", "")
             output_modalities = architecture.get("output_modalities", [])
             
-            # Determine model type from modality
+            # Determine model type from modality and name patterns
+            model_name_lower = model_id.lower()
+            
+            # Known image model patterns
+            image_patterns = [
+                "stable-diffusion", "sdxl", "flux", "dall-e", "midjourney",
+                "playground-v2", "ssd-1b", "japanese-stable"
+            ]
+            
             if "image" in (output_modalities or []):
                 model_type = "image_generation"
+            elif any(p in model_name_lower for p in image_patterns):
+                model_type = "image"  # Detected by name pattern
             elif modality and "text" in modality.lower():
                 model_type = "chat"
             else:
@@ -359,10 +369,21 @@ def normalize_litellm(raw_data: dict[str, Any], fetched_at: str) -> dict[str, Mo
             # LiteLLM uses litellm_provider or we extract from key
             provider = model_data.get("litellm_provider", "") or extract_provider(model_key)
             
+            # Known image model patterns (override incorrect mode classifications)
+            model_name_lower = model_key.lower()
+            image_patterns = [
+                "stable-diffusion", "sdxl", "flux", "dall-e", "midjourney",
+                "playground-v2", "ssd-1b", "japanese-stable"
+            ]
+            is_image_by_name = any(p in model_name_lower for p in image_patterns)
+            
             # Get model type from LiteLLM mode field
             mode = model_data.get("mode", "chat")
-            # Normalize mode names
-            if mode in ("chat", "completion", "responses"):
+            
+            # Override with name-based detection for image models
+            if is_image_by_name:
+                model_type = "image"
+            elif mode in ("chat", "completion", "responses"):
                 model_type = "chat"
             elif mode in ("image_generation", "image_edit"):
                 model_type = "image"
