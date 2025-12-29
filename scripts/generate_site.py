@@ -274,7 +274,9 @@ def generate_index(prices: dict, changelog: dict) -> str:
     metadata = prices.get("metadata", {})
     models = prices.get("models", {})
     total = metadata.get("total_models", len(models))
-    providers = metadata.get("providers", [])
+    # Compute unique providers from models
+    unique_providers = set(m.get("provider", "") for m in models.values() if m.get("provider"))
+    provider_count = len(unique_providers)
     categories = metadata.get("categories", {})
     last_update = prices.get("generated_at", "Unknown")
     
@@ -393,7 +395,7 @@ def generate_index(prices: dict, changelog: dict) -> str:
                 LLM Price Tracker
             </h1>
             <p class="text-xl md:text-2xl mb-8 text-white/90 max-w-2xl mx-auto">
-                Compare pricing for <span class="font-bold">{total:,}</span> AI models from {len(providers)}+ providers.
+                Compare pricing for <span class="font-bold">{total:,}</span> AI models from {provider_count}+ providers.
                 Find the best value for your needs.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
@@ -434,7 +436,7 @@ def generate_index(prices: dict, changelog: dict) -> str:
                 <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                     <span class="text-2xl">🏢</span>
                 </div>
-                <div class="text-4xl font-bold text-gray-900">{len(providers)}</div>
+                <div class="text-4xl font-bold text-gray-900">{provider_count}</div>
                 <div class="text-gray-600 text-sm">Providers</div>
             </div>
             <div class="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
@@ -519,9 +521,9 @@ def generate_index(prices: dict, changelog: dict) -> str:
                        class="bg-white text-brand-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg">
                         📧 Subscribe to Alerts
                     </a>
-                    <a href="https://discord.gg/yourinvite" target="_blank"
+                    <a href="https://github.com/MrUnreal/LLMTracker" target="_blank"
                        class="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all border border-white/30">
-                        💬 Join Discord
+                        ⭐ Star on GitHub
                     </a>
                 </div>
             </div>
