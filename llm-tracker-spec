@@ -1,0 +1,781 @@
+# LLM Price Tracker - Technical Specification
+
+**Version**: 1.0  
+**Date**: December 29, 2025  
+**Purpose**: Complete specification for an AI coding agent to implement
+
+---
+
+## 1. Project Overview
+
+### What We're Building
+A fully automated LLM pricing tracker that:
+- Scrapes pricing from multiple sources every 6 hours
+- Detects price changes and generates alerts
+- Provides a recommendation engine ("find me the cheapest model for X")
+- Monetizes through affiliate links and optional premium features
+
+### Core Principle
+**100% GitHub-hosted where possible**, with minimal external services only where GitHub can't do it.
+
+---
+
+## 2. Hosting Analysis: What Can Live on GitHub?
+
+### ✅ Fully GitHub-Hosted (Free Forever)
+
+| Component | GitHub Solution | Notes |
+|-----------|-----------------|-------|
+| Data scraping | GitHub Actions | 2000 mins/mo free, runs every 6 hours |
+| Data storage | Git repository | JSON files committed to repo |
+| Historical tracking | Git commits | Each scrape = commit with timestamp |
+| Static website | GitHub Pages | Free hosting, custom domain support |
+| API (read-only) | Raw GitHub URLs | `https://raw.githubusercontent.com/...` |
+| CI/CD | GitHub Actions | Auto-deploy on push |
+| Issue tracking | GitHub Issues | Can receive webhook notifications |
+
+### ⚠️ Requires External Service (Minimal)
+
+| Component | Why GitHub Can't Do It | Cheapest Solution |
+|-----------|------------------------|-------------------|
+| **Email alerts** | No email sending | Buttondown (free 100 subs) or Resend ($0 for 100/day) |
+| **Slack/Discord webhooks** | GitHub can do this! | Use GitHub Actions to POST |
+| **User authentication** | No user database | Clerk (free 5k MAU) or skip entirely |
+| **Custom API with auth** | Raw URLs are public | Cloudflare Workers (free 100k/day) |
+| **Payment processing** | No payment infra | Stripe (0 until revenue) |
+
+### 🎯 Recommended Architecture: 95% GitHub
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                         GITHUB (FREE)                                │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐      │
+│  │  GitHub Actions │  │  Git Repository │  │  GitHub Pages   │      │
+│  │  (Scraper)      │  │  (Data Store)   │  │  (Website)      │      │
+│  │                 │  │                 │  │                 │      │
+│  │  - Runs 4x/day  │  │  - prices.json  │  │  - Landing page │      │
+│  │  - Fetches APIs │  │  - history/     │  │  - Docs         │      │
+│  │  - Detects Δ    │  │  - changelog.md │  │  - Calculator   │      │
+│  │  - Sends alerts │  │                 │  │  - Comparisons  │      │
+│  └────────┬────────┘  └────────┬────────┘  └────────┬────────┘      │
+│           │                    │                    │                │
+│           └────────────────────┼────────────────────┘                │
+│                                │                                     │
+└────────────────────────────────┼─────────────────────────────────────┘
+                                 │
+                    ┌────────────┴────────────┐
+                    │    EXTERNAL (MINIMAL)   │
+                    │                         │
+                    │  - Email: Buttondown    │
+                    │  - Optional: Cloudflare │
+                    │    Workers for auth API │
+                    │  - Optional: Stripe     │
+                    └─────────────────────────┘
+```
+
+---
+
+## 3. Data Architecture
+
+### 3.1 Directory Structure
+
+```
+llm-price-tracker/
+├── .github/
+│   └── workflows/
+│       ├── scrape.yml          # Main scraper (runs every 6 hours)
+│       ├── deploy.yml          # Deploy website on push
+│       └── alerts.yml          # Send notifications on price change
+│
+├── data/
+│   ├── current/
+│   │   ├── prices.json         # Latest normalized prices (main file)
+│   │   ├── openrouter.json     # Raw OpenRouter response
+│   │   └── litellm.json        # Raw LiteLLM response
+│   │
+│   ├── history/
+│   │   ├── 2025/
+│   │   │   ├── 12/
+│   │   │   │   ├── 29.json     # Daily snapshot
+│   │   │   │   └── 28.json
+│   │   │   └── ...
+│   │   └── ...
+│   │
+│   └── changelog/
+│       ├── latest.json         # Most recent changes
+│       └── 2025-12-29.json     # Daily changelog
+│
+├── scripts/
+│   ├── scrape.py               # Fetch from all sources
+│   ├── normalize.py            # Merge into unified schema
+│   ├── detect_changes.py       # Compare with previous, generate changelog
+│   ├── generate_site.py        # Build static site from data
+│   └── send_alerts.py          # Discord/Slack webhooks
+│
+├── website/                    # Static site (GitHub Pages)
+│   ├── index.html
+│   ├── calculator.html
+│   ├── compare.html
+│   ├── api.html                # Documentation
+│   └── assets/
+│
+├── templates/                  # For generating website
+│   ├── index.jinja2
+│   └── ...
+│
+└── README.md
+```
+
+### 3.2 Unified Price Schema
+
+```json
+{
+  "generated_at": "2025-12-29T12:00:00Z",
+  "models": {
+    "openai/gpt-4o": {
+      "provider": "openai",
+      "model_id": "gpt-4o",
+      "display_name": "GPT-4o",
+      "pricing": {
+        "input_per_million": 2.50,
+        "output_per_million": 10.00,
+        "currency": "USD"
+      },
+      "context_window": 128000,
+      "max_output_tokens": 16384,
+      "supports_vision": true,
+      "supports_function_calling": true,
+      "supports_streaming": true,
+      "category": "flagship",
+      "sources": {
+        "openrouter": {
+          "price_input": 2.50,
+          "price_output": 10.00,
+          "last_updated": "2025-12-29T12:00:00Z"
+        },
+        "litellm": {
+          "price_input": 2.50,
+          "price_output": 10.00,
+          "last_updated": "2025-12-29T11:00:00Z"
+        }
+      },
+      "affiliate_links": {
+        "openrouter": "https://openrouter.ai/?ref=YOUR_REF",
+        "direct": "https://platform.openai.com/signup?ref=YOUR_REF"
+      }
+    }
+  },
+  "providers": {
+    "openai": {
+      "name": "OpenAI",
+      "website": "https://openai.com",
+      "pricing_page": "https://openai.com/pricing",
+      "affiliate_link": "https://platform.openai.com/signup?ref=YOUR_REF"
+    }
+  },
+  "metadata": {
+    "total_models": 150,
+    "sources": ["openrouter", "litellm"],
+    "last_scrape": "2025-12-29T12:00:00Z"
+  }
+}
+```
+
+### 3.3 Changelog Schema
+
+```json
+{
+  "generated_at": "2025-12-29T12:00:00Z",
+  "changes": [
+    {
+      "model_id": "openai/gpt-4o",
+      "change_type": "price_decrease",
+      "field": "input_per_million",
+      "old_value": 5.00,
+      "new_value": 2.50,
+      "percent_change": -50.0,
+      "detected_at": "2025-12-29T12:00:00Z"
+    },
+    {
+      "model_id": "anthropic/claude-4-sonnet",
+      "change_type": "new_model",
+      "detected_at": "2025-12-29T12:00:00Z"
+    }
+  ],
+  "summary": {
+    "price_increases": 0,
+    "price_decreases": 3,
+    "new_models": 1,
+    "removed_models": 0
+  }
+}
+```
+
+---
+
+## 4. GitHub Actions Workflows
+
+### 4.1 Main Scraper (`scrape.yml`)
+
+**Trigger**: Every 6 hours + manual dispatch
+
+**Steps**:
+1. Checkout repository
+2. Setup Python 3.12
+3. Install dependencies (httpx, pydantic, jinja2)
+4. Run `scrape.py` - fetch from OpenRouter API + LiteLLM raw file
+5. Run `normalize.py` - merge into unified schema
+6. Run `detect_changes.py` - compare with previous `prices.json`
+7. If changes detected:
+   - Save changelog to `changelog/latest.json` and dated file
+   - Set output variable `has_changes=true`
+8. Copy current prices to `history/YYYY/MM/DD.json`
+9. Run `generate_site.py` - rebuild static site
+10. Commit all changes with message "Price update: YYYY-MM-DD HH:MM"
+11. Push to main branch
+12. If `has_changes=true`, trigger `alerts.yml`
+
+**Environment Variables Needed**:
+- None for basic operation (all public APIs)
+- `DISCORD_WEBHOOK_URL` (optional, for alerts)
+- `SLACK_WEBHOOK_URL` (optional, for alerts)
+
+### 4.2 Alerts Workflow (`alerts.yml`)
+
+**Trigger**: Called by scrape.yml when changes detected, or manual
+
+**Steps**:
+1. Read `changelog/latest.json`
+2. Format message for each platform:
+   - Discord: Embed with price changes
+   - Slack: Block kit message
+   - Email: Call Buttondown API (if configured)
+3. POST to webhook URLs
+
+**Message Format**:
+```
+🔔 LLM Price Alert
+
+📉 Price Decreases:
+• GPT-4o: $5.00 → $2.50/M input (-50%)
+• Claude Sonnet: $3.00 → $2.50/M input (-17%)
+
+🆕 New Models:
+• Claude 4 Opus ($15.00/$75.00)
+
+View details: https://yoursite.github.io/changelog
+```
+
+### 4.3 Deploy Website (`deploy.yml`)
+
+**Trigger**: Push to main branch
+
+**Steps**:
+1. Checkout
+2. Build static site (if using a framework) or just copy `website/` folder
+3. Deploy to GitHub Pages
+
+---
+
+## 5. Website Structure (GitHub Pages)
+
+### 5.1 Pages
+
+| Page | URL | Purpose |
+|------|-----|---------|
+| Home | `/` | Hero + quick stats + email signup |
+| Compare | `/compare` | Side-by-side model comparison |
+| Calculator | `/calculator` | Estimate cost for token count |
+| Finder | `/find` | "Find me a model that..." recommendation engine |
+| Changelog | `/changelog` | Price change history |
+| API Docs | `/api` | How to use raw JSON |
+
+### 5.2 Key Features
+
+#### Homepage
+- "Last updated X minutes ago"
+- Quick stats: "Tracking 150 models from 12 providers"
+- Top 5 cheapest models (by category)
+- Email signup for price alerts
+- Affiliate CTAs
+
+#### Recommendation Finder (The Sticky Feature)
+```
+I need a model that:
+[x] Good at code
+[x] Under $2/M input tokens
+[x] At least 32k context
+[ ] Supports vision
+[ ] Supports function calling
+
+→ Results:
+1. DeepSeek V3 - $0.14/M input - 128k context ⭐ Best Value
+   [Try on OpenRouter] [Try on DeepSeek]
+   
+2. Claude 3.5 Haiku - $0.80/M input - 200k context
+   [Try on Anthropic] [Try on AWS Bedrock]
+```
+
+This is the **monetization wedge** - affiliate links on recommendations.
+
+#### Calculator
+```
+Input tokens: [1,000,000]
+Output tokens: [500,000]
+Model: [GPT-4o ▼]
+
+Estimated cost: $7.50
+- Input: $2.50
+- Output: $5.00
+
+Compare with:
+• Claude Sonnet: $5.50 (27% cheaper)
+• DeepSeek V3: $0.35 (95% cheaper)
+```
+
+### 5.3 Tech Stack for Website
+
+**Option A: Pure Static HTML + Vanilla JS (Simplest)**
+- No build step
+- Data loaded via fetch from raw GitHub URLs
+- Works 100% on GitHub Pages
+- Easy for agent to generate
+
+**Option B: Astro (Recommended)**
+- Static site generator
+- Can pre-render pages with data baked in
+- Better SEO
+- Still deploys to GitHub Pages
+- Slightly more complex
+
+**Recommendation**: Start with Option A, migrate to Astro later if needed.
+
+---
+
+## 6. Monetization Implementation
+
+### 6.1 Affiliate Links
+
+**Setup Required**:
+1. Sign up for OpenRouter affiliate program
+2. Sign up for AWS Partner Network (for Bedrock)
+3. Check if Anthropic, Google, OpenAI have referral programs
+
+**Implementation**:
+- Store affiliate links in `data/affiliates.json`
+- Inject into all "Try" buttons
+- Track clicks via simple counter (GitHub Pages can't do this, would need external)
+
+**Click Tracking (Optional, Requires External)**:
+- Use Plausible Analytics (free for small sites)
+- Or just skip tracking and check affiliate dashboards
+
+### 6.2 Email Alerts (Buttondown Integration)
+
+**Why Buttondown**:
+- Free for 100 subscribers
+- API for sending
+- Built-in subscription management
+- No server needed
+
+**Setup**:
+1. Create Buttondown account
+2. Get API key
+3. Add `BUTTONDOWN_API_KEY` to GitHub Secrets
+4. Embed subscribe form on website
+
+**Workflow**:
+```python
+# In send_alerts.py
+def send_email_alert(changelog):
+    if not os.environ.get("BUTTONDOWN_API_KEY"):
+        return
+    
+    requests.post(
+        "https://api.buttondown.email/v1/emails",
+        headers={"Authorization": f"Token {BUTTONDOWN_API_KEY}"},
+        json={
+            "subject": f"🔔 LLM Price Alert: {len(changelog['changes'])} changes",
+            "body": format_email(changelog),
+            "status": "published"  # Sends immediately to all subscribers
+        }
+    )
+```
+
+### 6.3 Discord/Slack Alerts (Free, GitHub Actions)
+
+**Discord Setup**:
+1. Create Discord server (or use existing)
+2. Create webhook in channel settings
+3. Add `DISCORD_WEBHOOK_URL` to GitHub Secrets
+
+**Slack Setup**:
+1. Create Slack app
+2. Add Incoming Webhook
+3. Add `SLACK_WEBHOOK_URL` to GitHub Secrets
+
+### 6.4 Premium Tier (Future, Requires External)
+
+If you want paid features later:
+
+**Option A: Gated Content via Stripe + Cloudflare Workers**
+- Stripe Checkout for payment
+- Cloudflare Worker validates subscription
+- Returns full historical data only to paid users
+- **Cost**: $0 until you have paying users
+
+**Option B: GitHub Sponsors with Benefits**
+- Sponsor at $5/mo tier
+- Get access to private repo with premium features
+- **Cost**: $0, GitHub handles payments
+
+**Recommendation**: Skip premium tier for v1. Focus on affiliate revenue.
+
+---
+
+## 7. Scripts Specification
+
+### 7.1 `scrape.py`
+
+**Purpose**: Fetch data from all sources
+
+**Inputs**: None (uses public APIs)
+
+**Outputs**: 
+- `data/current/openrouter.json`
+- `data/current/litellm.json`
+
+**Logic**:
+```python
+def scrape_openrouter() -> dict:
+    """
+    GET https://openrouter.ai/api/v1/models
+    Returns: Raw JSON response
+    """
+    
+def scrape_litellm() -> dict:
+    """
+    GET https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json
+    Returns: Raw JSON response
+    """
+
+def main():
+    openrouter_data = scrape_openrouter()
+    save_json("data/current/openrouter.json", openrouter_data)
+    
+    litellm_data = scrape_litellm()
+    save_json("data/current/litellm.json", litellm_data)
+```
+
+### 7.2 `normalize.py`
+
+**Purpose**: Merge sources into unified schema
+
+**Inputs**: 
+- `data/current/openrouter.json`
+- `data/current/litellm.json`
+- `data/affiliates.json` (affiliate link mapping)
+
+**Outputs**: 
+- `data/current/prices.json`
+
+**Logic**:
+```python
+def normalize_openrouter(raw: dict) -> dict[str, Model]:
+    """
+    Transform OpenRouter format to unified schema.
+    Key fields: id, pricing.prompt, pricing.completion, context_length
+    """
+    
+def normalize_litellm(raw: dict) -> dict[str, Model]:
+    """
+    Transform LiteLLM format to unified schema.
+    Key fields: input_cost_per_token, output_cost_per_token, max_tokens
+    Note: LiteLLM uses cost per token, multiply by 1M for per-million
+    """
+    
+def merge_sources(openrouter: dict, litellm: dict) -> dict:
+    """
+    Merge models from both sources.
+    If same model in both, keep both prices in 'sources' field.
+    Use OpenRouter as primary for capabilities (vision, function calling).
+    """
+    
+def inject_affiliates(models: dict, affiliates: dict) -> dict:
+    """
+    Add affiliate_links field to each model based on provider.
+    """
+```
+
+### 7.3 `detect_changes.py`
+
+**Purpose**: Compare current prices to previous, generate changelog
+
+**Inputs**: 
+- `data/current/prices.json` (new)
+- `data/history/YYYY/MM/DD.json` (previous, find most recent)
+
+**Outputs**: 
+- `data/changelog/latest.json`
+- `data/changelog/YYYY-MM-DD.json`
+- Returns: boolean `has_changes`
+
+**Logic**:
+```python
+def find_previous_snapshot() -> dict | None:
+    """
+    Find most recent file in data/history/
+    Returns None if no history exists
+    """
+    
+def detect_price_changes(old: dict, new: dict) -> list[Change]:
+    """
+    Compare each model's pricing.
+    Detect: price_increase, price_decrease, new_model, removed_model
+    Calculate percent change.
+    """
+    
+def generate_changelog(changes: list[Change]) -> dict:
+    """
+    Create changelog object with summary stats.
+    """
+    
+def main():
+    previous = find_previous_snapshot()
+    current = load_json("data/current/prices.json")
+    
+    if previous is None:
+        # First run, no changes to report
+        return False
+    
+    changes = detect_price_changes(previous, current)
+    
+    if not changes:
+        return False
+    
+    changelog = generate_changelog(changes)
+    save_json("data/changelog/latest.json", changelog)
+    save_json(f"data/changelog/{today()}.json", changelog)
+    
+    return True
+```
+
+### 7.4 `send_alerts.py`
+
+**Purpose**: Send notifications to Discord, Slack, Email
+
+**Inputs**: 
+- `data/changelog/latest.json`
+- Environment variables: `DISCORD_WEBHOOK_URL`, `SLACK_WEBHOOK_URL`, `BUTTONDOWN_API_KEY`
+
+**Logic**:
+```python
+def format_discord_message(changelog: dict) -> dict:
+    """
+    Create Discord embed format.
+    Use colors: green for decreases, red for increases.
+    """
+    
+def format_slack_message(changelog: dict) -> dict:
+    """
+    Create Slack Block Kit format.
+    """
+    
+def format_email(changelog: dict) -> str:
+    """
+    Create HTML email body.
+    Include unsubscribe link (Buttondown handles this).
+    """
+    
+def send_discord(message: dict):
+    """POST to DISCORD_WEBHOOK_URL if set"""
+    
+def send_slack(message: dict):
+    """POST to SLACK_WEBHOOK_URL if set"""
+    
+def send_email(changelog: dict):
+    """POST to Buttondown API if BUTTONDOWN_API_KEY set"""
+```
+
+### 7.5 `generate_site.py`
+
+**Purpose**: Build static website from data
+
+**Inputs**: 
+- `data/current/prices.json`
+- `data/changelog/latest.json`
+- `templates/*.jinja2` (or just string templates)
+
+**Outputs**: 
+- `website/index.html`
+- `website/compare.html`
+- `website/calculator.html`
+- `website/find.html`
+- `website/changelog.html`
+- `website/api.html`
+- `website/data/prices.json` (copy for client-side access)
+
+**Logic**:
+```python
+def generate_index(prices: dict, changelog: dict) -> str:
+    """
+    Homepage with:
+    - Last updated timestamp
+    - Quick stats
+    - Top 5 cheapest by category
+    - Email signup embed
+    """
+    
+def generate_compare(prices: dict) -> str:
+    """
+    Comparison page.
+    Data injected as JSON for client-side filtering.
+    """
+    
+def generate_calculator(prices: dict) -> str:
+    """
+    Calculator page.
+    Model list injected, calculation done client-side.
+    """
+    
+def generate_finder(prices: dict) -> str:
+    """
+    Recommendation engine.
+    All logic client-side JS.
+    Model data + affiliate links injected.
+    """
+```
+
+---
+
+## 8. External Services Setup
+
+### 8.1 Required (For Alerts)
+
+**Buttondown (Email)**
+1. Go to https://buttondown.email
+2. Sign up (free tier: 100 subscribers)
+3. Go to Settings → API
+4. Copy API key
+5. In GitHub repo: Settings → Secrets → Add `BUTTONDOWN_API_KEY`
+
+**Discord Webhook**
+1. Create/join Discord server
+2. Right-click channel → Edit Channel → Integrations → Webhooks
+3. Create webhook, copy URL
+4. In GitHub repo: Settings → Secrets → Add `DISCORD_WEBHOOK_URL`
+
+### 8.2 Optional (For Future Premium)
+
+**Cloudflare Workers** (if you need authenticated API)
+1. Sign up at cloudflare.com
+2. Workers & Pages → Create Worker
+3. Use wrangler CLI to deploy
+
+**Stripe** (if you want payments)
+1. Sign up at stripe.com
+2. Get API keys
+3. Create product/price for subscription
+
+---
+
+## 9. Launch Checklist
+
+### Week 1: Core Data Pipeline
+- [ ] Create GitHub repository
+- [ ] Implement `scrape.py`
+- [ ] Implement `normalize.py`
+- [ ] Implement `detect_changes.py`
+- [ ] Create GitHub Action for scraping
+- [ ] Verify data is being collected
+
+### Week 2: Website + Alerts
+- [ ] Build static website (start with index + compare)
+- [ ] Implement `generate_site.py`
+- [ ] Deploy to GitHub Pages
+- [ ] Set up Discord webhook
+- [ ] Implement `send_alerts.py`
+- [ ] Test full pipeline end-to-end
+
+### Week 3: Monetization + Polish
+- [ ] Add recommendation finder page
+- [ ] Set up affiliate links
+- [ ] Add email signup (Buttondown)
+- [ ] Add calculator page
+- [ ] Write API documentation
+- [ ] Create README
+
+### Week 4: Launch
+- [ ] Post to Hacker News
+- [ ] Post to r/MachineLearning, r/LocalLLaMA
+- [ ] Tweet/post on X, LinkedIn
+- [ ] Submit to Product Hunt
+
+---
+
+## 10. Success Metrics
+
+### Month 1
+- [ ] 500 unique visitors
+- [ ] 50 email subscribers
+- [ ] 100 Discord members
+- [ ] Data updating reliably 4x/day
+
+### Month 3
+- [ ] 5,000 unique visitors
+- [ ] 200 email subscribers
+- [ ] First affiliate revenue ($50+)
+- [ ] Ranking for "LLM pricing" keywords
+
+### Month 6
+- [ ] 20,000 unique visitors
+- [ ] 500 email subscribers
+- [ ] $200+/mo affiliate revenue
+- [ ] Consider premium tier
+
+---
+
+## 11. Risks and Mitigations
+
+| Risk | Likelihood | Mitigation |
+|------|------------|------------|
+| OpenRouter API changes | Medium | Also use LiteLLM as backup source |
+| GitHub Actions limits | Low | 2000 mins/mo is plenty for 4 runs/day |
+| Someone copies the idea | Medium | Speed to market + SEO + community |
+| Affiliate programs change | Medium | Diversify across providers |
+| Low traffic | Medium | Focus on SEO content, not just tools |
+
+---
+
+## 12. Future Enhancements (Post-MVP)
+
+1. **Benchmark integration**: Scrape Artificial Analysis for quality scores
+2. **VS Code extension**: Show costs inline while coding
+3. **CLI tool**: `llm-price gpt-4o` returns current price
+4. **GitHub Action**: Comment cost estimates on PRs
+5. **Slack bot**: `/llmprice gpt-4o` in any channel
+6. **API with auth**: For power users who need high rate limits
+7. **Cost tracking**: Connect to OpenAI/Anthropic API to track actual spend
+
+---
+
+## 13. Agent Instructions
+
+When implementing this specification:
+
+1. **Start with the data pipeline** - Get scraping working first
+2. **Use Python 3.12** with type hints throughout
+3. **Use Pydantic** for data validation and schemas
+4. **Use httpx** for async HTTP requests
+5. **Keep scripts simple** - Each script does one thing
+6. **Test locally** before pushing to GitHub Actions
+7. **Commit frequently** - Small, working increments
+8. **Use environment variables** for all secrets
+
+**Do not**:
+- Over-engineer the solution
+- Add a database (Git is the database)
+- Add user authentication in v1
+- Build a backend server
+
+**The goal is**: Maximum value with minimum infrastructure.

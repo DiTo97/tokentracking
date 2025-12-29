@@ -1,0 +1,53 @@
+{
+  "providers": {
+    "openai": {
+      "name": "OpenAI",
+      "website": "https://openai.com",
+      "pricing_page": "https://openai.com/pricing",
+      "affiliate_link": "https://platform.openai.com/signup"
+    },
+    "anthropic": {
+      "name": "Anthropic",
+      "website": "https://anthropic.com",
+      "pricing_page": "https://anthropic.com/pricing",
+      "affiliate_link": "https://console.anthropic.com/"
+    },
+    "google": {
+      "name": "Google",
+      "website": "https://cloud.google.com/vertex-ai",
+      "pricing_page": "https://cloud.google.com/vertex-ai/pricing",
+      "affiliate_link": "https://cloud.google.com/vertex-ai"
+    },
+    "mistral": {
+      "name": "Mistral AI",
+      "website": "https://mistral.ai",
+      "pricing_page": "https://mistral.ai/pricing",
+      "affiliate_link": "https://console.mistral.ai/"
+    },
+    "meta": {
+      "name": "Meta",
+      "website": "https://llama.meta.com",
+      "pricing_page": "https://llama.meta.com",
+      "affiliate_link": "https://llama.meta.com"
+    },
+    "deepseek": {
+      "name": "DeepSeek",
+      "website": "https://deepseek.com",
+      "pricing_page": "https://platform.deepseek.com/api-docs/pricing",
+      "affiliate_link": "https://platform.deepseek.com/"
+    },
+    "cohere": {
+      "name": "Cohere",
+      "website": "https://cohere.com",
+      "pricing_page": "https://cohere.com/pricing",
+      "affiliate_link": "https://dashboard.cohere.com/"
+    },
+    "openrouter": {
+      "name": "OpenRouter",
+      "website": "https://openrouter.ai",
+      "pricing_page": "https://openrouter.ai/models",
+      "affiliate_link": "https://openrouter.ai/"
+    }
+  },
+  "model_overrides": {}
+}
