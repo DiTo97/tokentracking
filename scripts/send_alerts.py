@@ -59,8 +59,17 @@ def format_percent(percent: Optional[float]) -> str:
     return f"({sign}{percent:.1f}%)"
 
 
-def format_change_line(change: dict[str, Any]) -> str:
-    """Format a single change for text display."""
+def format_change_line(change: dict[str, Any], include_links: bool = False) -> str:
+    """
+    Format a single change for text display.
+    
+    Args:
+        change: The change dictionary
+        include_links: If True, include Discord markdown links to calculator
+        
+    Returns:
+        Formatted change line string
+    """
     model_id = change.get("model_id", "unknown")
     change_type = change.get("change_type", "")
     field = change.get("field", "")
@@ -71,23 +80,31 @@ def format_change_line(change: dict[str, Any]) -> str:
     # Get short model name
     model_name = model_id.split("/")[-1] if "/" in model_id else model_id
     
+    # Create linked model name for Discord
+    if include_links:
+        from urllib.parse import quote
+        calc_url = f"{WEBSITE_URL}/calculator.html?model={quote(model_id)}"
+        model_display = f"[{model_name}]({calc_url})"
+    else:
+        model_display = model_name
+    
     if change_type == "new_model":
         if isinstance(new_value, dict):
             input_price = new_value.get("input_per_million", 0)
             output_price = new_value.get("output_per_million", 0)
-            return f"• {model_name}: {format_price(input_price)}/{format_price(output_price)} per M tokens"
-        return f"• {model_name}"
+            return f"• {model_display}: {format_price(input_price)}/{format_price(output_price)} per M tokens"
+        return f"• {model_display}"
     
     elif change_type == "removed_model":
-        return f"• {model_name}"
+        return f"• {model_name}"  # No link for removed models
     
     elif change_type in ("price_increase", "price_decrease"):
         field_name = "input" if "input" in field else "output"
         arrow = "→"
-        return f"• {model_name} ({field_name}): {format_price(old_value)} {arrow} {format_price(new_value)} {format_percent(percent)}"
+        return f"• {model_display} ({field_name}): {format_price(old_value)} {arrow} {format_price(new_value)} {format_percent(percent)}"
     
     else:
-        return f"• {model_name}: {field} changed"
+        return f"• {model_display}: {field} changed"
 
 
 def format_discord_message(changelog: dict[str, Any]) -> dict[str, Any]:
@@ -131,7 +148,7 @@ def format_discord_message(changelog: dict[str, Any]) -> dict[str, Any]:
     if price_decreases:
         lines.append("**📉 Price Decreases:**")
         for change in price_decreases[:10]:  # Limit to 10
-            lines.append(format_change_line(change))
+            lines.append(format_change_line(change, include_links=True))
         if len(price_decreases) > 10:
             lines.append(f"  ...and {len(price_decreases) - 10} more")
         lines.append("")
@@ -139,7 +156,7 @@ def format_discord_message(changelog: dict[str, Any]) -> dict[str, Any]:
     if price_increases:
         lines.append("**📈 Price Increases:**")
         for change in price_increases[:10]:
-            lines.append(format_change_line(change))
+            lines.append(format_change_line(change, include_links=True))
         if len(price_increases) > 10:
             lines.append(f"  ...and {len(price_increases) - 10} more")
         lines.append("")
@@ -147,7 +164,7 @@ def format_discord_message(changelog: dict[str, Any]) -> dict[str, Any]:
     if new_models:
         lines.append("**🆕 New Models:**")
         for change in new_models[:10]:
-            lines.append(format_change_line(change))
+            lines.append(format_change_line(change, include_links=True))
         if len(new_models) > 10:
             lines.append(f"  ...and {len(new_models) - 10} more")
         lines.append("")
@@ -155,9 +172,14 @@ def format_discord_message(changelog: dict[str, Any]) -> dict[str, Any]:
     if removed_models:
         lines.append("**🗑️ Removed Models:**")
         for change in removed_models[:5]:
-            lines.append(format_change_line(change))
+            lines.append(format_change_line(change))  # No links for removed
         if len(removed_models) > 5:
             lines.append(f"  ...and {len(removed_models) - 5} more")
+    
+    # Add quick links section
+    lines.append("")
+    lines.append("**🔗 Quick Links:**")
+    lines.append(f"[📊 Compare Models]({WEBSITE_URL}/compare.html) • [🧮 Calculator]({WEBSITE_URL}/calculator.html) • [📁 Raw Data]({WEBSITE_URL}/api.html)")
     
     description = "\n".join(lines)
     
@@ -168,9 +190,10 @@ def format_discord_message(changelog: dict[str, Any]) -> dict[str, Any]:
     embed = {
         "title": "LLM Price Tracker Update",
         "description": description,
+        "url": f"{WEBSITE_URL}/changelog.html",
         "color": color,
         "footer": {
-            "text": f"View full changelog: {WEBSITE_URL}/changelog"
+            "text": "Click title for full changelog • LLM Price Tracker"
         },
         "timestamp": changelog.get("generated_at", datetime.now(timezone.utc).isoformat())
     }
