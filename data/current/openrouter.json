@@ -1,6 +1,6 @@
 {
   "source": "openrouter",
-  "fetched_at": "2025-12-31T00:11:04.959067+00:00",
+  "fetched_at": "2025-12-31T06:04:20.240441+00:00",
   "api_url": "https://openrouter.ai/api/v1/models",
   "model_count": 353,
   "data": [
@@ -5058,8 +5058,8 @@
         "instruct_type": null
       },
       "pricing": {
-        "prompt": "0.00000009",
-        "completion": "0.0000011",
+        "prompt": "0.00000006",
+        "completion": "0.0000006",
         "request": "0",
         "image": "0",
         "web_search": "0",
@@ -6517,8 +6517,8 @@
         "instruct_type": null
       },
       "pricing": {
-        "prompt": "0.000000039",
-        "completion": "0.00000019",
+        "prompt": "0.00000002",
+        "completion": "0.0000001",
         "request": "0",
         "image": "0",
         "web_search": "0",
@@ -6691,8 +6691,8 @@
         "instruct_type": null
       },
       "pricing": {
-        "prompt": "0.00000003",
-        "completion": "0.00000014",
+        "prompt": "0.000000016",
+        "completion": "0.00000006",
         "request": "0",
         "image": "0",
         "web_search": "0",
@@ -11621,7 +11621,7 @@
       "name": "Google: Gemma 3 27B",
       "created": 1741756359,
       "description": "Gemma 3 introduces multimodality, supporting vision-language input and text outputs. It handles context windows up to 128k tokens, understands over 140 languages, and offers improved math, reasoning, and chat capabilities, including structured outputs and function calling. Gemma 3 27B is Google's latest open source model, successor to [Gemma 2](google/gemma-2-27b-it)",
-      "context_length": 96000,
+      "context_length": 131072,
       "architecture": {
         "modality": "text+image->text",
         "input_modalities": [
@@ -11635,16 +11635,16 @@
         "instruct_type": "gemma"
       },
       "pricing": {
-        "prompt": "0.00000004",
-        "completion": "0.00000015",
+        "prompt": "0.000000036",
+        "completion": "0.000000064",
         "request": "0",
         "image": "0",
         "web_search": "0",
         "internal_reasoning": "0"
       },
       "top_provider": {
-        "context_length": 96000,
-        "max_completion_tokens": 96000,
+        "context_length": 131072,
+        "max_completion_tokens": null,
         "is_moderated": false
       },
       "per_request_limits": null,
