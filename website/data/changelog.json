@@ -1,50 +1,36 @@
 {
-  "generated_at": "2026-01-09T00:10:27.793777+00:00",
+  "generated_at": "2026-01-09T18:04:36.264112+00:00",
   "changes": [
     {
-      "model_id": "liquid/lfm-2.2-6b",
-      "change_type": "price_decrease",
-      "field": "input_per_million",
-      "old_value": 0.05,
-      "new_value": 0.01,
-      "percent_change": -80.0,
-      "detected_at": "2026-01-09T00:10:27.791681+00:00"
+      "model_id": "nex-agi/deepseek-v3.1-nex-n1",
+      "change_type": "new_model",
+      "field": "model",
+      "old_value": null,
+      "new_value": {
+        "input_per_million": 0.27,
+        "output_per_million": 1.0
+      },
+      "percent_change": null,
+      "detected_at": "2026-01-09T18:04:36.261659+00:00"
     },
     {
-      "model_id": "liquid/lfm-2.2-6b",
-      "change_type": "price_decrease",
-      "field": "output_per_million",
-      "old_value": 0.1,
-      "new_value": 0.02,
-      "percent_change": -80.0,
-      "detected_at": "2026-01-09T00:10:27.791681+00:00"
-    },
-    {
-      "model_id": "liquid/lfm2-8b-a1b",
-      "change_type": "price_decrease",
-      "field": "input_per_million",
-      "old_value": 0.05,
-      "new_value": 0.01,
-      "percent_change": -80.0,
-      "detected_at": "2026-01-09T00:10:27.791681+00:00"
-    },
-    {
-      "model_id": "liquid/lfm2-8b-a1b",
-      "change_type": "price_decrease",
-      "field": "output_per_million",
-      "old_value": 0.1,
-      "new_value": 0.02,
-      "percent_change": -80.0,
-      "detected_at": "2026-01-09T00:10:27.791681+00:00"
+      "model_id": "nex-agi/deepseek-v3.1-nex-n1:free",
+      "change_type": "removed_model",
+      "field": "model",
+      "old_value": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0
+      },
+      "new_value": null,
+      "percent_change": null,
+      "detected_at": "2026-01-09T18:04:36.261659+00:00"
     }
   ],
   "summary": {
     "price_increases": 0,
-    "price_decreases": 4,
-    "new_models": 0,
-    "removed_models": 0,
+    "price_decreases": 0,
+    "new_models": 1,
+    "removed_models": 1,
     "other_changes": 0
-  },
-  "notified": true,
-  "notified_at": "2026-01-09T00:10:46.172982+00:00"
+  }
 }
