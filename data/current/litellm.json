@@ -1,6 +1,6 @@
 {
   "source": "litellm",
-  "fetched_at": "2026-01-12T00:10:55.550809+00:00",
+  "fetched_at": "2026-01-12T06:05:20.275785+00:00",
   "source_url": "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json",
   "model_count": 2392,
   "data": {
@@ -23345,13 +23345,13 @@
       "supports_tool_choice": true
     },
     "openrouter/openai/gpt-oss-20b": {
-      "input_cost_per_token": 1.8e-07,
+      "input_cost_per_token": 2e-08,
       "litellm_provider": "openrouter",
       "max_input_tokens": 131072,
       "max_output_tokens": 32768,
       "max_tokens": 32768,
       "mode": "chat",
-      "output_cost_per_token": 8e-07,
+      "output_cost_per_token": 1e-07,
       "source": "https://openrouter.ai/openai/gpt-oss-20b",
       "supports_function_calling": true,
       "supports_parallel_function_calling": true,
