@@ -1,6 +1,6 @@
 {
   "source": "openrouter",
-  "fetched_at": "2026-01-17T00:09:46.142714+00:00",
+  "fetched_at": "2026-01-17T06:03:52.570386+00:00",
   "api_url": "https://openrouter.ai/api/v1/models",
   "model_count": 339,
   "data": [
@@ -4249,7 +4249,7 @@
         "prompt": "0.000003",
         "completion": "0.000015",
         "request": "0",
-        "image": "0",
+        "image": "0.0048",
         "web_search": "0",
         "internal_reasoning": "0",
         "input_cache_read": "0.0000003",
@@ -4258,7 +4258,7 @@
       "top_provider": {
         "context_length": 1000000,
         "max_completion_tokens": 64000,
-        "is_moderated": false
+        "is_moderated": true
       },
       "per_request_limits": null,
       "supported_parameters": [
@@ -5161,7 +5161,7 @@
       "name": "Qwen: Qwen3 Next 80B A3B Thinking",
       "created": 1757612284,
       "description": "Qwen3-Next-80B-A3B-Thinking is a reasoning-first chat model in the Qwen3-Next line that outputs structured “thinking” traces by default. It’s designed for hard multi-step problems; math proofs, code synthesis/debugging, logic, and agentic planning, and reports strong results across knowledge, reasoning, coding, alignment, and multilingual evaluations. Compared with prior Qwen3 variants, it emphasizes stability under long chains of thought and efficient scaling during inference, and it is tuned to follow complex instructions while reducing repetitive or off-task behavior.\n\nThe model is suitable for agent frameworks and tool use (function calling), retrieval-heavy workflows, and standardized benchmarking where step-by-step solutions are required. It supports long, detailed completions and leverages throughput-oriented techniques (e.g., multi-token prediction) for faster generation. Note that it operates in thinking-only mode.",
-      "context_length": 262144,
+      "context_length": 128000,
       "architecture": {
         "modality": "text->text",
         "input_modalities": [
@@ -5182,8 +5182,8 @@
         "internal_reasoning": "0"
       },
       "top_provider": {
-        "context_length": 262144,
-        "max_completion_tokens": 262144,
+        "context_length": 128000,
+        "max_completion_tokens": null,
         "is_moderated": false
       },
       "per_request_limits": null,

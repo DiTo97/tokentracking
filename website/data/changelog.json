@@ -1,36 +1,18 @@
 {
-  "generated_at": "2026-01-17T00:09:46.862693+00:00",
+  "generated_at": "2026-01-17T06:03:53.246056+00:00",
   "changes": [
     {
-      "model_id": "qwen/qwen3-vl-235b-a22b-thinking",
-      "change_type": "price_increase",
-      "field": "input_per_million",
-      "old_value": 0.45,
-      "new_value": 0.98,
-      "percent_change": 117.78,
-      "detected_at": "2026-01-17T00:09:46.859793+00:00"
-    },
-    {
-      "model_id": "qwen/qwen3-vl-235b-a22b-thinking",
-      "change_type": "price_increase",
-      "field": "output_per_million",
-      "old_value": 3.5,
-      "new_value": 3.95,
-      "percent_change": 12.86,
-      "detected_at": "2026-01-17T00:09:46.859793+00:00"
-    },
-    {
-      "model_id": "qwen/qwen3-vl-235b-a22b-thinking",
+      "model_id": "qwen/qwen3-next-80b-a3b-thinking",
       "change_type": "context_change",
       "field": "context_window",
       "old_value": 262144,
-      "new_value": 131072,
-      "percent_change": -50.0,
-      "detected_at": "2026-01-17T00:09:46.859793+00:00"
+      "new_value": 128000,
+      "percent_change": -51.17,
+      "detected_at": "2026-01-17T06:03:53.243581+00:00"
     }
   ],
   "summary": {
-    "price_increases": 2,
+    "price_increases": 0,
     "price_decreases": 0,
     "new_models": 0,
     "removed_models": 0,
