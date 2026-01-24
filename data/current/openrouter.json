@@ -1,6 +1,6 @@
 {
   "source": "openrouter",
-  "fetched_at": "2026-01-24T00:10:21.582739+00:00",
+  "fetched_at": "2026-01-24T06:04:06.604107+00:00",
   "api_url": "https://openrouter.ai/api/v1/models",
   "model_count": 345,
   "data": [
@@ -15752,7 +15752,7 @@
         "top_p"
       ],
       "default_parameters": {},
-      "expiration_date": null
+      "expiration_date": "2026-02-06"
     },
     {
       "id": "meta-llama/llama-3.1-70b-instruct",
