@@ -1,6 +1,6 @@
 {
   "source": "openrouter",
-  "fetched_at": "2026-01-25T12:04:19.447192+00:00",
+  "fetched_at": "2026-01-25T18:03:58.293549+00:00",
   "api_url": "https://openrouter.ai/api/v1/models",
   "model_count": 346,
   "data": [
@@ -7853,7 +7853,8 @@
         "request": "0",
         "image": "0",
         "web_search": "0",
-        "internal_reasoning": "0"
+        "internal_reasoning": "0",
+        "input_cache_read": "0.000000022"
       },
       "top_provider": {
         "context_length": 262144,
