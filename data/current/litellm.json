@@ -1,8 +1,8 @@
 {
   "source": "litellm",
-  "fetched_at": "2026-01-27T12:04:50.269908+00:00",
+  "fetched_at": "2026-01-27T18:05:51.563803+00:00",
   "source_url": "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json",
-  "model_count": 2459,
+  "model_count": 2460,
   "data": {
     "sample_spec": {
       "code_interpreter_cost_per_session": 0.0,
@@ -13524,6 +13524,43 @@
       "supports_response_schema": true,
       "supports_system_messages": true,
       "supports_tool_choice": true,
+      "supports_vision": true,
+      "supports_web_search": true
+    },
+    "gemini-robotics-er-1.5-preview": {
+      "cache_read_input_token_cost": 0,
+      "input_cost_per_token": 3e-07,
+      "input_cost_per_audio_token": 1e-06,
+      "litellm_provider": "gemini",
+      "max_input_tokens": 1048576,
+      "max_output_tokens": 65535,
+      "max_tokens": 65535,
+      "mode": "chat",
+      "output_cost_per_token": 2.5e-06,
+      "output_cost_per_reasoning_token": 2.5e-06,
+      "source": "https://ai.google.dev/gemini-api/docs/models#gemini-robotics-er-1-5-preview",
+      "supported_endpoints": [
+        "/v1/chat/completions",
+        "/v1/completions"
+      ],
+      "supported_modalities": [
+        "text",
+        "image",
+        "video",
+        "audio"
+      ],
+      "supported_output_modalities": [
+        "text"
+      ],
+      "supports_audio_output": false,
+      "supports_function_calling": true,
+      "supports_parallel_function_calling": true,
+      "supports_prompt_caching": false,
+      "supports_reasoning": true,
+      "supports_response_schema": true,
+      "supports_system_messages": true,
+      "supports_tool_choice": true,
+      "supports_url_context": true,
       "supports_vision": true,
       "supports_web_search": true
     },
