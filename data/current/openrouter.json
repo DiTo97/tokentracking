@@ -1,6 +1,6 @@
 {
   "source": "openrouter",
-  "fetched_at": "2026-01-27T06:04:39.134708+00:00",
+  "fetched_at": "2026-01-27T12:04:50.213941+00:00",
   "api_url": "https://openrouter.ai/api/v1/models",
   "model_count": 347,
   "data": [
@@ -43,7 +43,9 @@
         "reasoning",
         "response_format",
         "stop",
-        "structured_outputs"
+        "structured_outputs",
+        "tool_choice",
+        "tools"
       ],
       "default_parameters": {
         "temperature": null,
