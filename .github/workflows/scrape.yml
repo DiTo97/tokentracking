@@ -51,15 +51,6 @@ jobs:
             echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Generate website
-        run: uv run python scripts/generate_site.py
-
-      - name: Copy changelog to website
-        run: |
-          if [ -f "data/changelog/latest.json" ]; then
-            cp data/changelog/latest.json website/data/changelog.json
-          fi
-
       - name: Commit and push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
