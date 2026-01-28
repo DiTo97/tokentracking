@@ -28,7 +28,7 @@ DATA_DIR = PROJECT_ROOT / "data"
 CHANGELOG_DIR = DATA_DIR / "changelog"
 
 # Configuration
-WEBSITE_URL = "https://dito97.github.io/LLMTracker"
+WEBSITE_URL = "https://dito97.github.io/tokentracking"
 REQUEST_TIMEOUT = 30.0
 
 
@@ -188,12 +188,12 @@ def format_discord_message(changelog: dict[str, Any]) -> dict[str, Any]:
         description = description[:3997] + "..."
     
     embed = {
-        "title": "LLM Price Tracker Update",
+        "title": "tokentracking Price Update",
         "description": description,
         "url": f"{WEBSITE_URL}/changelog.html",
         "color": color,
         "footer": {
-            "text": "Click title for full changelog • LLM Price Tracker"
+            "text": "Click title for full changelog • tokentracking"
         },
         "timestamp": changelog.get("generated_at", datetime.now(timezone.utc).isoformat())
     }
@@ -352,7 +352,7 @@ def format_email(changelog: dict[str, Any]) -> tuple[str, str]:
     html_parts.extend([
         "<hr>",
         f"<p><a href='{WEBSITE_URL}/changelog'>View full changelog</a></p>",
-        "<p><small>You're receiving this because you subscribed to LLM Price Tracker alerts.</small></p>"
+        "<p><small>You're receiving this because you subscribed to tokentracking alerts.</small></p>"
     ])
     
     return subject, "\n".join(html_parts)
@@ -511,7 +511,7 @@ def main() -> None:
         python send_alerts.py --test    # Send dummy test notification
     """
     parser = argparse.ArgumentParser(
-        description="Send LLM Price Tracker alerts to Discord, Slack, and Email"
+        description="Send tokentracking alerts to Discord, Slack, and Email"
     )
     parser.add_argument(
         "--test",
@@ -521,7 +521,7 @@ def main() -> None:
     args = parser.parse_args()
     
     print("=" * 60)
-    print("LLM Price Tracker - Alert Sender")
+    print("tokentracking - Alert Sender")
     if args.test:
         print("🧪 TEST MODE - Using dummy changelog data")
     print(f"Started at: {datetime.now(timezone.utc).isoformat()}")
