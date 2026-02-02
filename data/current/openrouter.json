@@ -1,8 +1,8 @@
 {
   "source": "openrouter",
-  "fetched_at": "2026-02-02T02:04:45.113452+00:00",
+  "fetched_at": "2026-02-02T07:01:25.944124+00:00",
   "api_url": "https://openrouter.ai/api/v1/models",
-  "model_count": 346,
+  "model_count": 347,
   "data": [
     {
       "id": "openrouter/free",
@@ -35,6 +35,52 @@
       },
       "per_request_limits": null,
       "supported_parameters": [],
+      "default_parameters": {
+        "temperature": null,
+        "top_p": null,
+        "frequency_penalty": null
+      },
+      "expiration_date": null
+    },
+    {
+      "id": "stepfun/step-3.5-flash:free",
+      "canonical_slug": "stepfun/step-3.5-flash",
+      "hugging_face_id": "stepfun-ai/Step-3.5-Flash",
+      "name": "StepFun: Step 3.5 Flash (free)",
+      "created": 1769728337,
+      "description": "Step 3.5 Flash is StepFun's most capable open-source foundation model. Built on a sparse Mixture of Experts (MoE) architecture, it selectively activates only 11B of its 196B parameters per token. It is a reasoning model that is incredibly speed efficient even at long contexts.",
+      "context_length": 256000,
+      "architecture": {
+        "modality": "text->text",
+        "input_modalities": [
+          "text"
+        ],
+        "output_modalities": [
+          "text"
+        ],
+        "tokenizer": "Other",
+        "instruct_type": null
+      },
+      "pricing": {
+        "prompt": "0",
+        "completion": "0"
+      },
+      "top_provider": {
+        "context_length": 256000,
+        "max_completion_tokens": 256000,
+        "is_moderated": false
+      },
+      "per_request_limits": null,
+      "supported_parameters": [
+        "frequency_penalty",
+        "include_reasoning",
+        "max_tokens",
+        "reasoning",
+        "stop",
+        "temperature",
+        "tools",
+        "top_p"
+      ],
       "default_parameters": {
         "temperature": null,
         "top_p": null,
@@ -3368,7 +3414,7 @@
         "instruct_type": null
       },
       "pricing": {
-        "prompt": "0.0000002",
+        "prompt": "0.000000255",
         "completion": "0.000001",
         "input_cache_read": "0.00000003"
       },
@@ -4535,9 +4581,8 @@
         "instruct_type": "deepseek-v3.1"
       },
       "pricing": {
-        "prompt": "0.00000021",
-        "completion": "0.00000032",
-        "input_cache_read": "0.00000021"
+        "prompt": "0.00000027",
+        "completion": "0.00000041"
       },
       "top_provider": {
         "context_length": 163840,
