@@ -1,6 +1,6 @@
 {
   "source": "litellm",
-  "fetched_at": "2026-02-02T12:57:40.239609+00:00",
+  "fetched_at": "2026-02-02T18:41:49.169793+00:00",
   "source_url": "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json",
   "model_count": 2471,
   "data": {
@@ -29790,6 +29790,9 @@
       "mode": "chat",
       "output_cost_per_token": 1e-06,
       "source": "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+      "supported_regions": [
+        "global"
+      ],
       "supports_function_calling": true,
       "supports_tool_choice": true
     },
@@ -29802,6 +29805,9 @@
       "mode": "chat",
       "output_cost_per_token": 4e-06,
       "source": "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+      "supported_regions": [
+        "global"
+      ],
       "supports_function_calling": true,
       "supports_tool_choice": true
     },
@@ -29814,6 +29820,9 @@
       "mode": "chat",
       "output_cost_per_token": 1.2e-06,
       "source": "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+      "supported_regions": [
+        "global"
+      ],
       "supports_function_calling": true,
       "supports_tool_choice": true
     },
@@ -29826,6 +29835,9 @@
       "mode": "chat",
       "output_cost_per_token": 1.2e-06,
       "source": "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+      "supported_regions": [
+        "global"
+      ],
       "supports_function_calling": true,
       "supports_tool_choice": true
     },
