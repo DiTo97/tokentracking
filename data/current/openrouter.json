@@ -1,6 +1,6 @@
 {
   "source": "openrouter",
-  "fetched_at": "2026-02-02T18:41:49.131781+00:00",
+  "fetched_at": "2026-02-03T02:03:19.401138+00:00",
   "api_url": "https://openrouter.ai/api/v1/models",
   "model_count": 347,
   "data": [
@@ -8,7 +8,7 @@
       "id": "openrouter/free",
       "canonical_slug": "openrouter/free",
       "hugging_face_id": "",
-      "name": "Free Router",
+      "name": "Free Models Router",
       "created": 1769917427,
       "description": "The simplest way to get free inference. openrouter/free is a router that selects free models at random from the models available on OpenRouter. The router smartly filters for models that support features needed for your request such as image understanding, tool calling, structured outputs and more. ",
       "context_length": 200000,
@@ -25,8 +25,8 @@
         "instruct_type": null
       },
       "pricing": {
-        "prompt": "-1",
-        "completion": "-1"
+        "prompt": "0",
+        "completion": "0"
       },
       "top_provider": {
         "context_length": null,
@@ -34,7 +34,25 @@
         "is_moderated": false
       },
       "per_request_limits": null,
-      "supported_parameters": [],
+      "supported_parameters": [
+        "frequency_penalty",
+        "include_reasoning",
+        "logit_bias",
+        "max_tokens",
+        "min_p",
+        "presence_penalty",
+        "reasoning",
+        "repetition_penalty",
+        "response_format",
+        "seed",
+        "stop",
+        "structured_outputs",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_p"
+      ],
       "default_parameters": {
         "temperature": null,
         "top_p": null,
@@ -16337,7 +16355,29 @@
         "is_moderated": false
       },
       "per_request_limits": null,
-      "supported_parameters": [],
+      "supported_parameters": [
+        "frequency_penalty",
+        "include_reasoning",
+        "logit_bias",
+        "logprobs",
+        "max_tokens",
+        "min_p",
+        "presence_penalty",
+        "reasoning",
+        "reasoning_effort",
+        "repetition_penalty",
+        "response_format",
+        "seed",
+        "stop",
+        "structured_outputs",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p",
+        "web_search_options"
+      ],
       "default_parameters": {
         "temperature": null,
         "top_p": null,
