@@ -1,34 +1,53 @@
 {
-  "generated_at": "2026-02-04T01:58:12.362313+00:00",
+  "generated_at": "2026-02-04T12:57:19.359587+00:00",
   "changes": [
     {
-      "model_id": "qwen/qwen3-coder-next",
+      "model_id": "gemini/deep-research-pro-preview-12-2025",
       "change_type": "new_model",
       "field": "model",
       "old_value": null,
       "new_value": {
-        "input_per_million": 0.2,
-        "output_per_million": 1.5,
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
         "cache_read_per_million": null,
         "cache_creation_per_million": null
       },
       "percent_change": null,
-      "detected_at": "2026-02-04T01:58:12.359930+00:00"
+      "detected_at": "2026-02-04T12:57:19.357294+00:00"
     },
     {
-      "model_id": "meta-llama/llama-3-8b-instruct",
-      "change_type": "price_decrease",
-      "field": "output_per_million",
-      "old_value": 0.06,
-      "new_value": 0.04,
-      "percent_change": -33.33,
-      "detected_at": "2026-02-04T01:58:12.359930+00:00"
+      "model_id": "deep-research-pro-preview-12-2025",
+      "change_type": "new_model",
+      "field": "model",
+      "old_value": null,
+      "new_value": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": null,
+        "cache_creation_per_million": null
+      },
+      "percent_change": null,
+      "detected_at": "2026-02-04T12:57:19.357294+00:00"
+    },
+    {
+      "model_id": "vertex_ai/deep-research-pro-preview-12-2025",
+      "change_type": "new_model",
+      "field": "model",
+      "old_value": null,
+      "new_value": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": null,
+        "cache_creation_per_million": null
+      },
+      "percent_change": null,
+      "detected_at": "2026-02-04T12:57:19.357294+00:00"
     }
   ],
   "summary": {
     "price_increases": 0,
-    "price_decreases": 1,
-    "new_models": 1,
+    "price_decreases": 0,
+    "new_models": 3,
     "removed_models": 0,
     "cache_price_changes": 0,
     "other_changes": 0
