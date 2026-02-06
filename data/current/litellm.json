@@ -1,8 +1,8 @@
 {
   "source": "litellm",
-  "fetched_at": "2026-02-06T01:59:07.895782+00:00",
+  "fetched_at": "2026-02-06T06:53:41.184763+00:00",
   "source_url": "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json",
-  "model_count": 2488,
+  "model_count": 2490,
   "data": {
     "sample_spec": {
       "code_interpreter_cost_per_session": 0.0,
@@ -10813,6 +10813,32 @@
       "source": "https://elevenlabs.io/pricing",
       "supported_endpoints": [
         "/v1/audio/transcriptions"
+      ]
+    },
+    "elevenlabs/eleven_v3": {
+      "input_cost_per_character": 0.00018,
+      "litellm_provider": "elevenlabs",
+      "metadata": {
+        "calculation": "$0.18/1000 characters (Scale plan pricing, 1 credit per character)",
+        "notes": "ElevenLabs Eleven v3 - most expressive TTS model with 70+ languages and audio tags support"
+      },
+      "mode": "audio_speech",
+      "source": "https://elevenlabs.io/pricing",
+      "supported_endpoints": [
+        "/v1/audio/speech"
+      ]
+    },
+    "elevenlabs/eleven_multilingual_v2": {
+      "input_cost_per_character": 0.00018,
+      "litellm_provider": "elevenlabs",
+      "metadata": {
+        "calculation": "$0.18/1000 characters (Scale plan pricing, 1 credit per character)",
+        "notes": "ElevenLabs Eleven Multilingual v2 - default TTS model with 29 languages support"
+      },
+      "mode": "audio_speech",
+      "source": "https://elevenlabs.io/pricing",
+      "supported_endpoints": [
+        "/v1/audio/speech"
       ]
     },
     "embed-english-light-v2.0": {
