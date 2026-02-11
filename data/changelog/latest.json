@@ -1,24 +1,92 @@
 {
-  "generated_at": "2026-02-11T13:07:50.744744+00:00",
+  "generated_at": "2026-02-11T19:01:59.020798+00:00",
   "changes": [
     {
-      "model_id": "deepseek/deepseek-reasoner",
-      "change_type": "context_change",
-      "field": "context_window",
-      "old_value": 128000,
-      "new_value": 131072,
-      "percent_change": 2.4,
-      "detected_at": "2026-02-11T13:07:50.741269+00:00"
+      "model_id": "z-ai/glm-5",
+      "change_type": "new_model",
+      "field": "model",
+      "old_value": null,
+      "new_value": {
+        "input_per_million": 1.0,
+        "output_per_million": 3.2,
+        "cache_read_per_million": 0.2,
+        "cache_creation_per_million": null
+      },
+      "percent_change": null,
+      "detected_at": "2026-02-11T19:01:59.017551+00:00"
+    },
+    {
+      "model_id": "mistralai/ministral-3b",
+      "change_type": "removed_model",
+      "field": "model",
+      "old_value": {
+        "input_per_million": 0.04,
+        "output_per_million": 0.04,
+        "cache_read_per_million": null,
+        "cache_creation_per_million": null
+      },
+      "new_value": null,
+      "percent_change": null,
+      "detected_at": "2026-02-11T19:01:59.017551+00:00"
+    },
+    {
+      "model_id": "openrouter/pony-alpha",
+      "change_type": "removed_model",
+      "field": "model",
+      "old_value": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_creation_per_million": null
+      },
+      "new_value": null,
+      "percent_change": null,
+      "detected_at": "2026-02-11T19:01:59.017551+00:00"
+    },
+    {
+      "model_id": "mistralai/ministral-8b",
+      "change_type": "removed_model",
+      "field": "model",
+      "old_value": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.1,
+        "cache_read_per_million": null,
+        "cache_creation_per_million": null
+      },
+      "new_value": null,
+      "percent_change": null,
+      "detected_at": "2026-02-11T19:01:59.017551+00:00"
+    },
+    {
+      "model_id": "mistralai/mistral-tiny",
+      "change_type": "removed_model",
+      "field": "model",
+      "old_value": {
+        "input_per_million": 0.25,
+        "output_per_million": 0.25,
+        "cache_read_per_million": null,
+        "cache_creation_per_million": null
+      },
+      "new_value": null,
+      "percent_change": null,
+      "detected_at": "2026-02-11T19:01:59.017551+00:00"
+    },
+    {
+      "model_id": "qwen/qwen3-vl-30b-a3b-instruct",
+      "change_type": "cache_price_change",
+      "field": "cache_read_per_million",
+      "old_value": 0.075,
+      "new_value": null,
+      "percent_change": -100.0,
+      "detected_at": "2026-02-11T19:01:59.017551+00:00"
     }
   ],
   "summary": {
     "price_increases": 0,
     "price_decreases": 0,
-    "new_models": 0,
-    "removed_models": 0,
-    "cache_price_changes": 0,
-    "other_changes": 1
-  },
-  "notified": true,
-  "notified_at": "2026-02-11T13:08:09.721303+00:00"
+    "new_models": 1,
+    "removed_models": 4,
+    "cache_price_changes": 1,
+    "other_changes": 0
+  }
 }
