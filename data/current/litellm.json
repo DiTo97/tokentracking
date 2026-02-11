@@ -1,6 +1,6 @@
 {
   "source": "litellm",
-  "fetched_at": "2026-02-11T06:59:35.851261+00:00",
+  "fetched_at": "2026-02-11T13:07:50.071499+00:00",
   "source_url": "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json",
   "model_count": 2525,
   "data": {
@@ -10761,14 +10761,22 @@
       "input_cost_per_token": 2.8e-07,
       "input_cost_per_token_cache_hit": 2.8e-08,
       "litellm_provider": "deepseek",
-      "max_input_tokens": 128000,
+      "max_input_tokens": 131072,
       "max_output_tokens": 8192,
       "max_tokens": 8192,
       "mode": "chat",
       "output_cost_per_token": 4.2e-07,
+      "source": "https://api-docs.deepseek.com/quick_start/pricing",
+      "supported_endpoints": [
+        "/v1/chat/completions"
+      ],
       "supports_assistant_prefill": true,
       "supports_function_calling": true,
+      "supports_native_streaming": true,
+      "supports_parallel_function_calling": true,
       "supports_prompt_caching": true,
+      "supports_response_schema": true,
+      "supports_system_messages": true,
       "supports_tool_choice": true
     },
     "deepseek/deepseek-coder": {
@@ -10805,16 +10813,24 @@
       "input_cost_per_token": 2.8e-07,
       "input_cost_per_token_cache_hit": 2.8e-08,
       "litellm_provider": "deepseek",
-      "max_input_tokens": 128000,
-      "max_output_tokens": 8192,
-      "max_tokens": 8192,
+      "max_input_tokens": 131072,
+      "max_output_tokens": 65536,
+      "max_tokens": 65536,
       "mode": "chat",
       "output_cost_per_token": 4.2e-07,
+      "source": "https://api-docs.deepseek.com/quick_start/pricing",
+      "supported_endpoints": [
+        "/v1/chat/completions"
+      ],
       "supports_assistant_prefill": true,
-      "supports_function_calling": true,
+      "supports_function_calling": false,
+      "supports_native_streaming": true,
+      "supports_parallel_function_calling": false,
       "supports_prompt_caching": true,
       "supports_reasoning": true,
-      "supports_tool_choice": true
+      "supports_response_schema": true,
+      "supports_system_messages": true,
+      "supports_tool_choice": false
     },
     "deepseek/deepseek-v3": {
       "cache_creation_input_token_cost": 0.0,
