@@ -1,8 +1,8 @@
 {
   "source": "litellm",
-  "fetched_at": "2026-02-10T19:04:07.815551+00:00",
+  "fetched_at": "2026-02-11T02:12:20.019419+00:00",
   "source_url": "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json",
-  "model_count": 2522,
+  "model_count": 2524,
   "data": {
     "sample_spec": {
       "code_interpreter_cost_per_session": 0.0,
@@ -5853,6 +5853,19 @@
       "output_cost_per_token": 7e-07,
       "supports_tool_choice": true
     },
+    "azure_ai/kimi-k2.5": {
+      "input_cost_per_token": 6e-07,
+      "litellm_provider": "azure_ai",
+      "max_input_tokens": 262144,
+      "max_output_tokens": 262144,
+      "max_tokens": 262144,
+      "mode": "chat",
+      "output_cost_per_token": 3e-06,
+      "source": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/kimi-k2-5-now-in-microsoft-foundry/4492321",
+      "supports_function_calling": true,
+      "supports_tool_choice": true,
+      "supports_vision": true
+    },
     "azure_ai/ministral-3b": {
       "input_cost_per_token": 4e-08,
       "litellm_provider": "azure_ai",
@@ -6097,6 +6110,17 @@
       "supports_tool_choice": true
     },
     "bedrock/ap-northeast-1/moonshotai.kimi-k2-thinking": {
+      "input_cost_per_token": 7.3e-07,
+      "litellm_provider": "bedrock",
+      "max_input_tokens": 262144,
+      "max_output_tokens": 262144,
+      "max_tokens": 262144,
+      "mode": "chat",
+      "output_cost_per_token": 3.03e-06,
+      "supports_function_calling": true,
+      "supports_reasoning": true
+    },
+    "bedrock/moonshotai.kimi-k2-thinking": {
       "input_cost_per_token": 7.3e-07,
       "litellm_provider": "bedrock",
       "max_input_tokens": 262144,
