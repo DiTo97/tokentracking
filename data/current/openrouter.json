@@ -1,8 +1,8 @@
 {
   "source": "openrouter",
-  "fetched_at": "2026-02-12T19:01:20.002724+00:00",
+  "fetched_at": "2026-02-13T02:08:47.158501+00:00",
   "api_url": "https://openrouter.ai/api/v1/models",
-  "model_count": 343,
+  "model_count": 342,
   "data": [
     {
       "id": "minimax/minimax-m2.5",
@@ -91,6 +91,7 @@
         "frequency_penalty",
         "include_reasoning",
         "logit_bias",
+        "logprobs",
         "max_tokens",
         "min_p",
         "presence_penalty",
@@ -104,6 +105,7 @@
         "tool_choice",
         "tools",
         "top_k",
+        "top_logprobs",
         "top_p"
       ],
       "default_parameters": {
@@ -14187,54 +14189,6 @@
         "top_p"
       ],
       "default_parameters": {},
-      "expiration_date": null
-    },
-    {
-      "id": "mistralai/pixtral-12b",
-      "canonical_slug": "mistralai/pixtral-12b",
-      "hugging_face_id": "mistralai/Pixtral-12B-2409",
-      "name": "Mistral: Pixtral 12B",
-      "created": 1725926400,
-      "description": "The first multi-modal, text+image-to-text model from Mistral AI. Its weights were launched via torrent: https://x.com/mistralai/status/1833758285167722836.",
-      "context_length": 32768,
-      "architecture": {
-        "modality": "text+image->text",
-        "input_modalities": [
-          "text",
-          "image"
-        ],
-        "output_modalities": [
-          "text"
-        ],
-        "tokenizer": "Mistral",
-        "instruct_type": null
-      },
-      "pricing": {
-        "prompt": "0.0000001",
-        "completion": "0.0000001"
-      },
-      "top_provider": {
-        "context_length": 32768,
-        "max_completion_tokens": null,
-        "is_moderated": false
-      },
-      "per_request_limits": null,
-      "supported_parameters": [
-        "frequency_penalty",
-        "logit_bias",
-        "max_tokens",
-        "min_p",
-        "presence_penalty",
-        "repetition_penalty",
-        "seed",
-        "stop",
-        "temperature",
-        "top_k",
-        "top_p"
-      ],
-      "default_parameters": {
-        "temperature": 0.3
-      },
       "expiration_date": null
     },
     {
