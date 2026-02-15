@@ -1,6 +1,6 @@
 {
   "source": "litellm",
-  "fetched_at": "2026-02-14T18:33:40.478774+00:00",
+  "fetched_at": "2026-02-15T02:08:13.276290+00:00",
   "source_url": "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json",
   "model_count": 2566,
   "data": {
@@ -23209,7 +23209,7 @@
       "mode": "chat",
       "output_cost_per_token": 6e-05,
       "supports_function_calling": true,
-      "supports_parallel_function_calling": true,
+      "supports_parallel_function_calling": false,
       "supports_pdf_input": true,
       "supports_prompt_caching": true,
       "supports_reasoning": true,
