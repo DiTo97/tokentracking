@@ -1,6 +1,6 @@
 {
   "source": "openrouter",
-  "fetched_at": "2026-02-16T02:04:17.967956+00:00",
+  "fetched_at": "2026-02-16T07:01:45.645743+00:00",
   "api_url": "https://openrouter.ai/api/v1/models",
   "model_count": 340,
   "data": [
@@ -544,8 +544,8 @@
       },
       "pricing": {
         "prompt": "0.00000045",
-        "completion": "0.00000044",
-        "input_cache_read": "0.0000001125"
+        "completion": "0.0000022",
+        "input_cache_read": "0.000000225"
       },
       "top_provider": {
         "context_length": 262144,
@@ -6039,7 +6039,7 @@
       "name": "MoonshotAI: Kimi K2 0905",
       "created": 1757021147,
       "description": "Kimi K2 0905 is the September update of [Kimi K2 0711](moonshotai/kimi-k2). It is a large-scale Mixture-of-Experts (MoE) language model developed by Moonshot AI, featuring 1 trillion total parameters with 32 billion active per forward pass. It supports long-context inference up to 256k tokens, extended from the previous 128k.\n\nThis update improves agentic coding with higher accuracy and better generalization across scaffolds, and enhances frontend coding with more aesthetic and functional outputs for web, 3D, and related tasks. Kimi K2 is optimized for agentic capabilities, including advanced tool use, reasoning, and code synthesis. It excels across coding (LiveCodeBench, SWE-bench), reasoning (ZebraLogic, GPQA), and tool-use (Tau2, AceBench) benchmarks. The model is trained with a novel stack incorporating the MuonClip optimizer for stable large-scale MoE training.",
-      "context_length": 262144,
+      "context_length": 131072,
       "architecture": {
         "modality": "text->text",
         "input_modalities": [
@@ -6052,13 +6052,13 @@
         "instruct_type": null
       },
       "pricing": {
-        "prompt": "0.00000039",
-        "completion": "0.0000019",
-        "input_cache_read": "0.000000195"
+        "prompt": "0.0000004",
+        "completion": "0.000002",
+        "input_cache_read": "0.00000015"
       },
       "top_provider": {
-        "context_length": 262144,
-        "max_completion_tokens": 262144,
+        "context_length": 131072,
+        "max_completion_tokens": null,
         "is_moderated": false
       },
       "per_request_limits": null,
@@ -11657,57 +11657,6 @@
       "expiration_date": "2026-03-03"
     },
     {
-      "id": "anthropic/claude-3.7-sonnet:thinking",
-      "canonical_slug": "anthropic/claude-3-7-sonnet-20250219",
-      "hugging_face_id": "",
-      "name": "Anthropic: Claude 3.7 Sonnet (thinking)",
-      "created": 1740422110,
-      "description": "Claude 3.7 Sonnet is an advanced large language model with improved reasoning, coding, and problem-solving capabilities. It introduces a hybrid reasoning approach, allowing users to choose between rapid responses and extended, step-by-step processing for complex tasks. The model demonstrates notable improvements in coding, particularly in front-end development and full-stack updates, and excels in agentic workflows, where it can autonomously navigate multi-step processes. \n\nClaude 3.7 Sonnet maintains performance parity with its predecessor in standard mode while offering an extended reasoning mode for enhanced accuracy in math, coding, and instruction-following tasks.\n\nRead more at the [blog post here](https://www.anthropic.com/news/claude-3-7-sonnet)",
-      "context_length": 200000,
-      "architecture": {
-        "modality": "text+image+file->text",
-        "input_modalities": [
-          "text",
-          "image",
-          "file"
-        ],
-        "output_modalities": [
-          "text"
-        ],
-        "tokenizer": "Claude",
-        "instruct_type": null
-      },
-      "pricing": {
-        "prompt": "0.000003",
-        "completion": "0.000015",
-        "web_search": "0.01",
-        "input_cache_read": "0.0000003",
-        "input_cache_write": "0.00000375"
-      },
-      "top_provider": {
-        "context_length": 200000,
-        "max_completion_tokens": 64000,
-        "is_moderated": false
-      },
-      "per_request_limits": null,
-      "supported_parameters": [
-        "include_reasoning",
-        "max_tokens",
-        "reasoning",
-        "stop",
-        "temperature",
-        "tool_choice",
-        "tools",
-        "top_p"
-      ],
-      "default_parameters": {
-        "temperature": null,
-        "top_p": null,
-        "frequency_penalty": null
-      },
-      "expiration_date": null
-    },
-    {
       "id": "anthropic/claude-3.7-sonnet",
       "canonical_slug": "anthropic/claude-3-7-sonnet-20250219",
       "hugging_face_id": "",
@@ -11757,7 +11706,58 @@
         "top_p": null,
         "frequency_penalty": null
       },
-      "expiration_date": null
+      "expiration_date": "2026-05-05"
+    },
+    {
+      "id": "anthropic/claude-3.7-sonnet:thinking",
+      "canonical_slug": "anthropic/claude-3-7-sonnet-20250219",
+      "hugging_face_id": "",
+      "name": "Anthropic: Claude 3.7 Sonnet (thinking)",
+      "created": 1740422110,
+      "description": "Claude 3.7 Sonnet is an advanced large language model with improved reasoning, coding, and problem-solving capabilities. It introduces a hybrid reasoning approach, allowing users to choose between rapid responses and extended, step-by-step processing for complex tasks. The model demonstrates notable improvements in coding, particularly in front-end development and full-stack updates, and excels in agentic workflows, where it can autonomously navigate multi-step processes. \n\nClaude 3.7 Sonnet maintains performance parity with its predecessor in standard mode while offering an extended reasoning mode for enhanced accuracy in math, coding, and instruction-following tasks.\n\nRead more at the [blog post here](https://www.anthropic.com/news/claude-3-7-sonnet)",
+      "context_length": 200000,
+      "architecture": {
+        "modality": "text+image+file->text",
+        "input_modalities": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output_modalities": [
+          "text"
+        ],
+        "tokenizer": "Claude",
+        "instruct_type": null
+      },
+      "pricing": {
+        "prompt": "0.000003",
+        "completion": "0.000015",
+        "web_search": "0.01",
+        "input_cache_read": "0.0000003",
+        "input_cache_write": "0.00000375"
+      },
+      "top_provider": {
+        "context_length": 200000,
+        "max_completion_tokens": 64000,
+        "is_moderated": false
+      },
+      "per_request_limits": null,
+      "supported_parameters": [
+        "include_reasoning",
+        "max_tokens",
+        "reasoning",
+        "stop",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_p"
+      ],
+      "default_parameters": {
+        "temperature": null,
+        "top_p": null,
+        "frequency_penalty": null
+      },
+      "expiration_date": "2026-05-05"
     },
     {
       "id": "mistralai/mistral-saba",
