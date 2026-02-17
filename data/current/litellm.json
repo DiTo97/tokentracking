@@ -1,6 +1,6 @@
 {
   "source": "litellm",
-  "fetched_at": "2026-02-16T18:41:21.270390+00:00",
+  "fetched_at": "2026-02-17T02:01:36.084538+00:00",
   "source_url": "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json",
   "model_count": 2567,
   "data": {
@@ -1088,7 +1088,7 @@
       "supports_vision": true,
       "tool_use_system_prompt_tokens": 346
     },
-    "apac.anthropic.claude-opus-4-6-v1": {
+    "au.anthropic.claude-opus-4-6-v1": {
       "cache_creation_input_token_cost": 6.875e-06,
       "cache_creation_input_token_cost_above_200k_tokens": 1.375e-05,
       "cache_read_input_token_cost": 5.5e-07,
@@ -23777,7 +23777,7 @@
       "max_output_tokens": 131072,
       "max_tokens": 131072,
       "mode": "chat",
-      "output_cost_per_token": 1.5e-07,
+      "output_cost_per_token": 1.5e-05,
       "source": "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing",
       "supports_function_calling": true,
       "supports_response_schema": false
@@ -23825,7 +23825,7 @@
       "max_output_tokens": 128000,
       "max_tokens": 128000,
       "mode": "chat",
-      "output_cost_per_token": 1.5e-07,
+      "output_cost_per_token": 1.5e-05,
       "source": "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing",
       "supports_function_calling": true,
       "supports_response_schema": false
