@@ -1,8 +1,8 @@
 {
   "source": "litellm",
-  "fetched_at": "2026-02-17T02:01:36.084538+00:00",
+  "fetched_at": "2026-02-17T06:57:56.792458+00:00",
   "source_url": "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json",
-  "model_count": 2567,
+  "model_count": 2569,
   "data": {
     "sample_spec": {
       "code_interpreter_cost_per_session": 0.0,
@@ -17117,6 +17117,19 @@
       "supports_parallel_function_calling": true,
       "supports_vision": true
     },
+    "github_copilot/claude-opus-4.6-fast": {
+      "litellm_provider": "github_copilot",
+      "max_input_tokens": 128000,
+      "max_output_tokens": 16000,
+      "max_tokens": 16000,
+      "mode": "chat",
+      "supported_endpoints": [
+        "/v1/chat/completions"
+      ],
+      "supports_function_calling": true,
+      "supports_parallel_function_calling": true,
+      "supports_vision": true
+    },
     "github_copilot/claude-opus-41": {
       "litellm_provider": "github_copilot",
       "max_input_tokens": 80000,
@@ -17361,6 +17374,20 @@
       "mode": "chat",
       "supported_endpoints": [
         "/v1/chat/completions",
+        "/v1/responses"
+      ],
+      "supports_function_calling": true,
+      "supports_parallel_function_calling": true,
+      "supports_response_schema": true,
+      "supports_vision": true
+    },
+    "github_copilot/gpt-5.3-codex": {
+      "litellm_provider": "github_copilot",
+      "max_input_tokens": 128000,
+      "max_output_tokens": 128000,
+      "max_tokens": 128000,
+      "mode": "responses",
+      "supported_endpoints": [
         "/v1/responses"
       ],
       "supports_function_calling": true,
