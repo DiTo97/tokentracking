@@ -1,51 +1,111 @@
 {
-  "generated_at": "2026-02-19T06:58:45.162334+00:00",
+  "generated_at": "2026-02-19T18:50:05.074265+00:00",
   "changes": [
     {
-      "model_id": "anthropic/claude-3.5-sonnet",
-      "change_type": "cache_price_change",
-      "field": "cache_read_per_million",
+      "model_id": "google/gemini-3.1-pro-preview",
+      "change_type": "new_model",
+      "field": "model",
       "old_value": null,
-      "new_value": 0.6,
+      "new_value": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": 0.2,
+        "cache_creation_per_million": 0.375
+      },
       "percent_change": null,
-      "detected_at": "2026-02-19T06:58:45.159700+00:00"
+      "detected_at": "2026-02-19T18:50:05.071378+00:00"
     },
     {
-      "model_id": "anthropic/claude-3.5-sonnet",
-      "change_type": "cache_price_change",
-      "field": "cache_creation_per_million",
+      "model_id": "gemini-3.1-pro-preview",
+      "change_type": "new_model",
+      "field": "model",
       "old_value": null,
-      "new_value": 7.5,
+      "new_value": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": 0.2,
+        "cache_creation_per_million": null
+      },
       "percent_change": null,
-      "detected_at": "2026-02-19T06:58:45.159700+00:00"
+      "detected_at": "2026-02-19T18:50:05.071378+00:00"
     },
     {
-      "model_id": "nvidia/nemotron-nano-12b-v2-vl",
-      "change_type": "price_decrease",
-      "field": "input_per_million",
-      "old_value": 0.2,
-      "new_value": 0.07,
-      "percent_change": -65.0,
-      "detected_at": "2026-02-19T06:58:45.159700+00:00"
+      "model_id": "vertex_ai/gemini-3.1-pro-preview",
+      "change_type": "new_model",
+      "field": "model",
+      "old_value": null,
+      "new_value": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": 0.2,
+        "cache_creation_per_million": null
+      },
+      "percent_change": null,
+      "detected_at": "2026-02-19T18:50:05.071378+00:00"
     },
     {
-      "model_id": "nvidia/nemotron-nano-12b-v2-vl",
-      "change_type": "price_decrease",
-      "field": "output_per_million",
-      "old_value": 0.6,
-      "new_value": 0.2,
-      "percent_change": -66.67,
-      "detected_at": "2026-02-19T06:58:45.159700+00:00"
+      "model_id": "gemini/gemini-3.1-pro-preview",
+      "change_type": "new_model",
+      "field": "model",
+      "old_value": null,
+      "new_value": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": 0.2,
+        "cache_creation_per_million": null
+      },
+      "percent_change": null,
+      "detected_at": "2026-02-19T18:50:05.071378+00:00"
+    },
+    {
+      "model_id": "gemini-3.1-pro-preview-customtools",
+      "change_type": "new_model",
+      "field": "model",
+      "old_value": null,
+      "new_value": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": 0.2,
+        "cache_creation_per_million": null
+      },
+      "percent_change": null,
+      "detected_at": "2026-02-19T18:50:05.071378+00:00"
+    },
+    {
+      "model_id": "vertex_ai/gemini-3.1-pro-preview-customtools",
+      "change_type": "new_model",
+      "field": "model",
+      "old_value": null,
+      "new_value": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": 0.2,
+        "cache_creation_per_million": null
+      },
+      "percent_change": null,
+      "detected_at": "2026-02-19T18:50:05.071378+00:00"
+    },
+    {
+      "model_id": "gemini/gemini-3.1-pro-preview-customtools",
+      "change_type": "new_model",
+      "field": "model",
+      "old_value": null,
+      "new_value": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": 0.2,
+        "cache_creation_per_million": null
+      },
+      "percent_change": null,
+      "detected_at": "2026-02-19T18:50:05.071378+00:00"
     }
   ],
   "summary": {
     "price_increases": 0,
-    "price_decreases": 2,
-    "new_models": 0,
+    "price_decreases": 0,
+    "new_models": 7,
     "removed_models": 0,
-    "cache_price_changes": 2,
+    "cache_price_changes": 0,
     "other_changes": 0
-  },
-  "notified": true,
-  "notified_at": "2026-02-19T06:59:02.843745+00:00"
+  }
 }
