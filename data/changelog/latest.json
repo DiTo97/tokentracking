@@ -1,29 +1,49 @@
 {
-  "generated_at": "2026-02-19T02:04:12.515734+00:00",
+  "generated_at": "2026-02-19T06:58:45.162334+00:00",
   "changes": [
     {
-      "model_id": "qwen/qwen3-4b",
-      "change_type": "removed_model",
-      "field": "model",
-      "old_value": {
-        "input_per_million": 0.0715,
-        "output_per_million": 0.273,
-        "cache_read_per_million": null,
-        "cache_creation_per_million": null
-      },
-      "new_value": null,
+      "model_id": "anthropic/claude-3.5-sonnet",
+      "change_type": "cache_price_change",
+      "field": "cache_read_per_million",
+      "old_value": null,
+      "new_value": 0.6,
       "percent_change": null,
-      "detected_at": "2026-02-19T02:04:12.512836+00:00"
+      "detected_at": "2026-02-19T06:58:45.159700+00:00"
+    },
+    {
+      "model_id": "anthropic/claude-3.5-sonnet",
+      "change_type": "cache_price_change",
+      "field": "cache_creation_per_million",
+      "old_value": null,
+      "new_value": 7.5,
+      "percent_change": null,
+      "detected_at": "2026-02-19T06:58:45.159700+00:00"
+    },
+    {
+      "model_id": "nvidia/nemotron-nano-12b-v2-vl",
+      "change_type": "price_decrease",
+      "field": "input_per_million",
+      "old_value": 0.2,
+      "new_value": 0.07,
+      "percent_change": -65.0,
+      "detected_at": "2026-02-19T06:58:45.159700+00:00"
+    },
+    {
+      "model_id": "nvidia/nemotron-nano-12b-v2-vl",
+      "change_type": "price_decrease",
+      "field": "output_per_million",
+      "old_value": 0.6,
+      "new_value": 0.2,
+      "percent_change": -66.67,
+      "detected_at": "2026-02-19T06:58:45.159700+00:00"
     }
   ],
   "summary": {
     "price_increases": 0,
-    "price_decreases": 0,
+    "price_decreases": 2,
     "new_models": 0,
-    "removed_models": 1,
-    "cache_price_changes": 0,
+    "removed_models": 0,
+    "cache_price_changes": 2,
     "other_changes": 0
-  },
-  "notified": true,
-  "notified_at": "2026-02-19T02:04:33.100227+00:00"
+  }
 }
